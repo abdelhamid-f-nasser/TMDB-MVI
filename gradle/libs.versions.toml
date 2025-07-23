@@ -70,6 +70,30 @@ coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coi
 kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
 kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
 
+# Testing - JUnit 4 (for Android instrumented tests)
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+
+# Testing - JUnit 5 (for unit tests)
+junit5-api = { group = "org.junit.jupiter", name = "junit-jupiter-api", version.ref = "junit5" }
+junit5-engine = { group = "org.junit.jupiter", name = "junit-jupiter-engine", version.ref = "junit5" }
+junit5-params = { group = "org.junit.jupiter", name = "junit-jupiter-params", version.ref = "junit5" }
+
+# Testing - Additional libraries
+truth = { group = "com.google.truth", name = "truth", version.ref = "truth" }
+turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
+mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
+mockk-android = { group = "io.mockk", name = "mockk-android", version.ref = "mockk" }
+androidx-arch-core-testing = { group = "androidx.arch.core", name = "core-testing", version.ref = "androidxArchCore" }
+kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinxCoroutinesTest" }
+
+# Testing - Room
+room-testing = { group = "androidx.room", name = "room-testing", version.ref = "room" }
+
+# Testing - Hilt
+hilt-android-testing = { group = "com.google.dagger", name = "hilt-android-testing", version.ref = "hilt" }
+
 [bundles]
 # Core app dependencies
 core = [
@@ -121,6 +145,31 @@ coroutines = [
 # Image loading dependencies
 image-loading = [
 	"coil-compose"
+]
+
+# JUnit 5 testing dependencies
+junit5 = [
+	"junit5-api",
+	"junit5-engine",
+	"junit5-params"
+]
+
+# Unit testing dependencies
+unit-testing = [
+	"truth",
+	"turbine",
+	"mockk",
+	"androidx-arch-core-testing",
+	"kotlinx-coroutines-test"
+]
+
+# Android instrumented testing dependencies
+android-testing = [
+	"androidx-junit",
+	"androidx-espresso-core",
+	"androidx-ui-test-junit4",
+	"mockk-android",
+	"hilt-android-testing",
 ]
 
 [plugins]
