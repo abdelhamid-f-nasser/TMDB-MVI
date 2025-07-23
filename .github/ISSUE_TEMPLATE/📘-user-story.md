@@ -1,7 +1,7 @@
 ---
 name: "\U0001F4D8 User Story"
 about: "\U0001F468‍\U0001F4BB As a user, I want to ..."
-title: "[USER]"
+title: "\U0001F4D8[USER]: "
 labels: user story
 assignees: ''
 

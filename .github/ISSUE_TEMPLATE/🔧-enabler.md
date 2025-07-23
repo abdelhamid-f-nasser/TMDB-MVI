@@ -2,7 +2,7 @@
 name: "\U0001F527 Enabler"
 about: Technical work that is needed to support user stories or improve developer
   experience
-title: "[ENABLE]"
+title: "\U0001F527 [ENABLE]:"
 labels: dev-xp
 assignees: ''
 
