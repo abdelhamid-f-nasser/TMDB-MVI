@@ -18,7 +18,8 @@ android {
 		versionCode = 1
 		versionName = "1.0"
 
-		testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+		testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"// For JUnit 5 support
+		testInstrumentationRunnerArguments["runnerBuilder"] = "de.mannodermaus.junit5.AndroidJUnit5Builder"
 
 		vectorDrawables {
 			useSupportLibrary = true
@@ -57,6 +58,13 @@ android {
 			excludes += "/META-INF/{AL2.0,LGPL2.1}"
 		}
 	}
+
+	// JUnit 5 configuration
+	testOptions {
+		unitTests.all {
+			it.useJUnitPlatform()
+		}
+	}
 }
 
 dependencies {
@@ -79,6 +87,12 @@ dependencies {
 	ksp(libs.moshi.codegen)
 
 	// Unit Testing
+	testImplementation(libs.bundles.junit5)
+	testImplementation(libs.bundles.unit.testing)
+	testImplementation(libs.room.testing)
+
+	// Android Testing
+	androidTestImplementation(libs.bundles.android.testing)
 	androidTestImplementation(platform(libs.androidx.compose.bom))
 	kspAndroidTest(libs.hilt.compiler)
 
