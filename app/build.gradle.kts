@@ -2,6 +2,9 @@ plugins {
 	alias(libs.plugins.android.application)
 	alias(libs.plugins.kotlin.android)
 	alias(libs.plugins.kotlin.compose)
+	alias(libs.plugins.hilt)
+	alias(libs.plugins.ksp)
+	id("de.mannodermaus.android-junit5") version libs.versions.junit5Android
 }
 
 android {
@@ -16,6 +19,11 @@ android {
 		versionName = "1.0"
 
 		testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+		vectorDrawables {
+			useSupportLibrary = true
+		}
+
 	}
 
 	buildTypes {
@@ -27,33 +35,54 @@ android {
 			)
 		}
 	}
+
 	compileOptions {
-		sourceCompatibility = JavaVersion.VERSION_11
-		targetCompatibility = JavaVersion.VERSION_11
+		sourceCompatibility = JavaVersion.VERSION_21
+		targetCompatibility = JavaVersion.VERSION_21
 	}
-	kotlinOptions {
-		jvmTarget = "11"
+
+	kotlin {
+		compilerOptions {
+			jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_21)
+		}
 	}
 	buildFeatures {
 		compose = true
 	}
+
+
+
+	packaging {
+		resources {
+			excludes += "/META-INF/{AL2.0,LGPL2.1}"
+		}
+	}
 }
 
 dependencies {
+	// Core bundles
+	implementation(libs.bundles.core)
+	implementation(libs.bundles.compose)
+	implementation(libs.bundles.navigation)
+	implementation(libs.bundles.hilt)
+	implementation(libs.bundles.room)
+	implementation(libs.bundles.networking)
+	implementation(libs.bundles.coroutines)
+	implementation(libs.bundles.image.loading)
 
-	implementation(libs.androidx.core.ktx)
-	implementation(libs.androidx.lifecycle.runtime.ktx)
-	implementation(libs.androidx.activity.compose)
+	// Compose BOM
 	implementation(platform(libs.androidx.compose.bom))
-	implementation(libs.androidx.ui)
-	implementation(libs.androidx.ui.graphics)
-	implementation(libs.androidx.ui.tooling.preview)
-	implementation(libs.androidx.material3)
-	testImplementation(libs.junit)
-	androidTestImplementation(libs.androidx.junit)
-	androidTestImplementation(libs.androidx.espresso.core)
+
+	// KSP processors
+	ksp(libs.hilt.compiler)
+	ksp(libs.room.compiler)
+	ksp(libs.moshi.codegen)
+
+	// Unit Testing
 	androidTestImplementation(platform(libs.androidx.compose.bom))
-	androidTestImplementation(libs.androidx.ui.test.junit4)
+	kspAndroidTest(libs.hilt.compiler)
+
+	// Debug
 	debugImplementation(libs.androidx.ui.tooling)
 	debugImplementation(libs.androidx.ui.test.manifest)
 }
