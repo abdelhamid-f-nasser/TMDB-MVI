@@ -1,7 +1,9 @@
 package com.movie.tmdb.foundation.presentation.ui.delegates
 
-import com.movie.tmdb.foundation.presentation.ui.mvi.*
-import kotlinx.coroutines.flow.StateFlow
+import com.movie.tmdb.foundation.presentation.ui.mvi.EffectManager
+import com.movie.tmdb.foundation.presentation.ui.mvi.IntentProcessor
+import com.movie.tmdb.foundation.presentation.ui.mvi.MviManager
+import com.movie.tmdb.foundation.presentation.ui.mvi.StateManager
 
 /**
  * Default implementation of [MviManager] for MVI delegation.
@@ -22,4 +24,4 @@ class DefaultMviManager<State, Intent, Effect>(
 ) : MviManager<State, Intent, Effect>,
     StateManager<State> by DefaultStateManager(initialState),
     IntentProcessor<Intent> by DefaultIntentProcessor(onIntent),
-    EffectManager<Effect> by DefaultEffectManager(initialEffect) 
+    EffectManager<Effect> by DefaultEffectManager(initialEffect)

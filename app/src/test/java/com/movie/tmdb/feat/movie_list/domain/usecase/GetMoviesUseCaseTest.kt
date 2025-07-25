@@ -49,11 +49,11 @@ class GetMoviesUseCaseTest {
 		val actual = sut()
 
 		// Assert
-		verify(exactly = 1) { repoMock.getPopularMovies() }
-
 		actual.test {
 			assertThat(awaitItem()).isEqualTo(expected)
 			awaitComplete()
 		}
+
+		verify(exactly = 1) { repoMock.getPopularMovies() }
 	}
 }

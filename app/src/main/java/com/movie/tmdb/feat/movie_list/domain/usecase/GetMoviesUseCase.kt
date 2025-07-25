@@ -2,7 +2,6 @@ package com.movie.tmdb.feat.movie_list.domain.usecase
 
 import com.movie.tmdb.feat.movie_list.domain.model.Movie
 import com.movie.tmdb.feat.movie_list.domain.repository.MovieRepository
-import com.movie.tmdb.foundation.domain.usecase.InputOnlyUseCase
 import com.movie.tmdb.foundation.domain.usecase.OutputOnlyUseCase
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
