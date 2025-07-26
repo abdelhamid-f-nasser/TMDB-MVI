@@ -71,6 +71,7 @@ dependencies {
 	// Core bundles
 	implementation(libs.bundles.core)
 	implementation(libs.bundles.compose)
+	implementation(libs.bundles.paging)
 	implementation(libs.bundles.navigation)
 	implementation(libs.bundles.hilt)
 	implementation(libs.bundles.room)
@@ -80,6 +81,7 @@ dependencies {
 
 	// Compose BOM
 	implementation(platform(libs.androidx.compose.bom))
+
 
 	// KSP processors
 	ksp(libs.hilt.compiler)
