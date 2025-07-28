@@ -14,5 +14,5 @@ class GetMoviesUseCase @Inject constructor(
 	private val repository: MovieRepository
 ) : OutputOnlyUseCase<Flow<PagingData<Movie>>> {
 
-	override suspend fun invoke(): Flow<PagingData<Movie>> = repository.getPopularMovies()
+	override fun invoke(): Flow<PagingData<Movie>> = repository.getPopularMovies()
 }

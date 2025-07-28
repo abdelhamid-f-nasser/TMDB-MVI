@@ -20,7 +20,6 @@ class DefaultMovieRepository @Inject constructor(
 				pageSize = ApiConstants.Pagination.DEFAULT_PAGE_SIZE,
 				initialLoadSize = ApiConstants.Pagination.INITIAL_LOAD_SIZE,
 				enablePlaceholders = false,
-				prefetchDistance = UiConstants.Paging.PREFETCH_DISTANCE
 			),
 			pagingSourceFactory = { moviePagingSource }
 		).flow
