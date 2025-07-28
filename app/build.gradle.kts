@@ -4,6 +4,7 @@ plugins {
 	alias(libs.plugins.kotlin.compose)
 	alias(libs.plugins.hilt)
 	alias(libs.plugins.ksp)
+	alias(libs.plugins.parcelize)
 	id("de.mannodermaus.android-junit5") version libs.versions.junit5Android
 }
 
@@ -12,6 +13,7 @@ android {
 	compileSdk = 36
 
 	defaultConfig {
+		testInstrumentationRunnerArguments += mapOf()
 		applicationId = "com.movie.tmdb"
 		minSdk = 24
 		targetSdk = 36

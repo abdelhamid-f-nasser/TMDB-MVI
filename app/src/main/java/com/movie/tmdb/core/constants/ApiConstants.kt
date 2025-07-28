@@ -11,10 +11,11 @@ object ApiConstants {
         const val MOVIE_POPULAR = "movie/popular"
     }
 
-    object QueryParams {
-        const val PAGE = "page"
-        const val LANGUAGE = "language"
-        const val DEFAULT_LANGUAGE = "en-US"
+    object QueryParamsKeys {
+		const val API_KEY = "api_key"
+		const val PAGE = "page"
+		const val LANGUAGE = "language"
+		const val DEFAULT_LANGUAGE = "en-US"
     }
 
     object Pagination {
