@@ -23,5 +23,5 @@ interface InputOnlyUseCase<in Input> {
 	 *
 	 * @return The result of the use case execution
 	 */
-	suspend operator fun invoke(input: Input)
+	operator fun invoke(input: Input)
 }

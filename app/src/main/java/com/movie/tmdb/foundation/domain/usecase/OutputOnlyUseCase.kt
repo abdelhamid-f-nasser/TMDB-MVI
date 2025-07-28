@@ -23,5 +23,5 @@ interface OutputOnlyUseCase<out Output> {
 	 *
 	 * @return The result of the use case execution
 	 */
-	suspend operator fun invoke(): Output
+	operator fun invoke(): Output
 }

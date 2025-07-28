@@ -25,6 +25,8 @@ kotlinxCoroutinesTest = "1.10.2"
 ksp = "2.2.0-2.0.2"
 coil = "2.7.0"
 junit5Android = "1.13.1.0"
+paging = "3.3.6"
+junitJupiter = "5.13.4"
 
 [libraries]
 # Core Android
@@ -42,6 +44,10 @@ androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-man
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 
+# Paging
+androidx-paging-runtime = { group = "androidx.paging", name = "paging-runtime", version.ref = "paging" }
+androidx-paging-compose = { group = "androidx.paging", name = "paging-compose", version.ref = "paging" }
+androidx-paging-testing = { group = "androidx.paging", name = "paging-testing", version.ref = "paging" }
 # Navigation
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
 
@@ -76,6 +82,7 @@ androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "j
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 
 # Testing - JUnit 5 (for unit tests)
+junit-jupiter = { group = "org.junit.jupiter", name = "junit-jupiter", version.ref = "junitJupiter" }
 junit5-api = { group = "org.junit.jupiter", name = "junit-jupiter-api", version.ref = "junit5" }
 junit5-engine = { group = "org.junit.jupiter", name = "junit-jupiter-engine", version.ref = "junit5" }
 junit5-params = { group = "org.junit.jupiter", name = "junit-jupiter-params", version.ref = "junit5" }
@@ -107,7 +114,13 @@ compose = [
 	"androidx-ui",
 	"androidx-ui-graphics",
 	"androidx-ui-tooling-preview",
-	"androidx-material3"
+	"androidx-material3",
+]
+
+## Paging Dependencies
+paging = [
+	"androidx-paging-compose",
+	"androidx-paging-runtime"
 ]
 
 # Navigation dependencies
@@ -149,6 +162,7 @@ image-loading = [
 
 # JUnit 5 testing dependencies
 junit5 = [
+	"junit-jupiter",
 	"junit5-api",
 	"junit5-engine",
 	"junit5-params"
@@ -160,7 +174,8 @@ unit-testing = [
 	"turbine",
 	"mockk",
 	"androidx-arch-core-testing",
-	"kotlinx-coroutines-test"
+	"kotlinx-coroutines-test",
+	"androidx-paging-testing"
 ]
 
 # Android instrumented testing dependencies
@@ -178,5 +193,6 @@ kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+parcelize = {id = "kotlin-parcelize"}
 kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 junit5-android = { id = "de.mannodermaus.android-junit5", version.ref = "junit5Android" }

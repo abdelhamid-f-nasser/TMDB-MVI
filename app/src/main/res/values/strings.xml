@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">TMDB</string>
+    <string name="popular_movies">Popular Movies</string>
+	<string name="back">Back</string>
+	<string name="unknown_movie">Unknown Movie</string>
+	<string name="movie_details">Movie Details</string>
+	<string name="failed_to_load_more_movies">Failed to load more movies</string>
 </resources>

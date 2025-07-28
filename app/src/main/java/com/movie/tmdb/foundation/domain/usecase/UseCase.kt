@@ -27,7 +27,7 @@ interface UseCase<in Input, out Output> {
 	 * @param input The input parameters for the use case
 	 * @return The result of the use case execution
 	 */
-	suspend operator fun invoke(input: Input): Output
+	operator fun invoke(input: Input): Output
 }
 
 
