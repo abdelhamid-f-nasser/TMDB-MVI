@@ -1,5 +1,6 @@
 package com.movie.tmdb.feat.movie_list.data.datasource.remote.paging
 
+import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.movie.tmdb.core.constants.ApiConstants
@@ -29,34 +30,16 @@ class MoviePagingSource @Inject constructor(
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Movie> {
         return try {
-            val page = params.key ?: ApiConstants.Pagination.START_PAGE_NUMBER
-
-            val response: PaginatedResponse<RemoteMovie> = remoteDataSource.getPopularMovies(
-                page = page,
-            )
-
-            val movies = response.results.map { remoteMovie ->
-                remoteMovie.toDomain()
-            }
-
-            val nextKey = if (page < response.totalPages) {
-                page + 1
-            } else {
-                null
-            }
-
-            val prevKey = if (page > 1) {
-                page - 1
-            } else {
-                null
-            }
-
+            val page = params.key ?: 1
+            val response = remoteDataSource.getPopularMovies(page)
+            
             LoadResult.Page(
-                data = movies,
-                prevKey = prevKey,
-                nextKey = nextKey
+                data = response.results.map { it.toDomain() },
+                prevKey = if (page == 1) null else page - 1,
+                nextKey = if (response.results.isEmpty()) null else page + 1
             )
         } catch (exception: Exception) {
+			Log.e("MoviePagingSource", "Error loading movies: ${exception.message}")
             LoadResult.Error(exception)
         }
     }
