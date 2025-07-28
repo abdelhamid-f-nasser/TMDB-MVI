@@ -7,9 +7,9 @@ import org.junit.jupiter.api.Test
 
 class DefaultMviManagerTest {
     data class TestState(val count: Int = 0)
-    sealed class TestEffect { object ShowToast : TestEffect() }
+    sealed class TestEffect
 
-    @Test
+	@Test
     fun `updateState should update state in order`() = runTest {
         val mvi = DefaultMviManager<TestState, String, TestEffect>(
             initialState = TestState(0),

@@ -1,6 +1,5 @@
-package com.movie.tmdb.ui.theme
+package com.movie.tmdb.core.design_system.theme
 
-import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
