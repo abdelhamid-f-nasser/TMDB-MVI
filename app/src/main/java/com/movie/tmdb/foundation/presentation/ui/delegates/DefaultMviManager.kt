@@ -18,10 +18,10 @@ import com.movie.tmdb.foundation.presentation.ui.mvi.StateManager
  * @property initialEffect The initial effect value (optional). Usually `null`, but can be set to trigger an effect immediately on creation (e.g., onboarding dialog, error message).
  */
 class DefaultMviManager<State, Intent, Effect>(
-    initialState: State,
-    onIntent: (Intent) -> Unit,
-    initialEffect: Effect? = null
+	initialState: State,
+	onIntent: (Intent) -> Unit,
+	initialEffect: Effect? = null,
 ) : MviManager<State, Intent, Effect>,
-    StateManager<State> by DefaultStateManager(initialState),
-    IntentProcessor<Intent> by DefaultIntentProcessor(onIntent),
-    EffectManager<Effect> by DefaultEffectManager(initialEffect)
+	StateManager<State> by DefaultStateManager(initialState),
+	IntentProcessor<Intent> by DefaultIntentProcessor(onIntent),
+	EffectManager<Effect> by DefaultEffectManager(initialEffect)

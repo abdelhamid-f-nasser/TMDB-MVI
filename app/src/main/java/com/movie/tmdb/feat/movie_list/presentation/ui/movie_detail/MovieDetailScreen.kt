@@ -34,7 +34,7 @@ import com.movie.tmdb.feat.movie_list.navigation.MovieRoute
 
 
 fun NavGraphBuilder.movieDetailsScreen(
-	navController: NavController
+	navController: NavController,
 ) {
 	composable(
 		route = MovieRoute.MovieDetails.route,

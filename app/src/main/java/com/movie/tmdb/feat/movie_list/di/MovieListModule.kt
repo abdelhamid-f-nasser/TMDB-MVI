@@ -6,13 +6,13 @@ import dagger.hilt.components.SingletonComponent
 
 /**
  * Main Hilt module for the Movie List feature.
- * 
+ *
  * This module serves as the entry point for all movie list feature dependencies.
  * It includes the data and domain modules for this feature.
- * 
+ *
  * All dependencies are automatically injectable via @Inject constructors:
  * - GetMoviesUseCase: Domain layer use case
- * - DefaultMovieRepository: Repository implementation  
+ * - DefaultMovieRepository: Repository implementation
  * - MoviePagingSource: Pagination data source
  * - MovieRetrofitRemoteDataSource: Remote data source implementation
  * - TmdbService: API service (provided by DataModule)
@@ -26,4 +26,4 @@ import dagger.hilt.components.SingletonComponent
 @InstallIn(SingletonComponent::class)
 object MovieListModule {
 	// All dependencies are provided by included modules and @Inject constructors
-} 
+}

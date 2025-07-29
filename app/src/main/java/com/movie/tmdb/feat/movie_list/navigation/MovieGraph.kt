@@ -10,7 +10,7 @@ import com.movie.tmdb.feat.movie_list.presentation.ui.movie_list.movieListScreen
 fun NavGraphBuilder.movieGraph(
 	navController: NavController,
 	onShowSnackBar: suspend (String) -> Unit,
-	) {
+) {
 	navigation(
 		startDestination = MovieRoute.MovieList.route,
 		route = AppGraphs.Movie.route,

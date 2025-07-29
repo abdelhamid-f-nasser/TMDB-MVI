@@ -63,5 +63,5 @@ data class RemoteMovie(
 	val voteAverage: Double,
 
 	@param:Json(name = "vote_count")
-	val voteCount: Int
+	val voteCount: Int,
 )

@@ -8,12 +8,12 @@ import kotlinx.parcelize.Parcelize
  */
 @Parcelize
 data class Movie(
-    val id: String,
-    val title: String,
-    val overview: String?,
-    val voteAverage: Double?,
-    val posterPath: String?,
-    val backdropPath: String?,
+	val id: String,
+	val title: String,
+	val overview: String?,
+	val voteAverage: Double?,
+	val posterPath: String?,
+	val backdropPath: String?,
 ) : Parcelable {
 	val hasRating: Boolean
 		get() = voteAverage != null && voteAverage > 0

@@ -38,7 +38,9 @@ fun MovieItem(
 			TmdbAsyncImage(
 				model = ImageUrlBuilder.buildPosterUrl(movie.posterPath),
 				contentDescription = "Poster for ${movie.title}",
-				modifier = Modifier.fillMaxSize().defaultMinSize(minHeight = 250.dp)
+				modifier = Modifier
+					.fillMaxSize()
+					.defaultMinSize(minHeight = 250.dp)
 			)
 
 			Box(

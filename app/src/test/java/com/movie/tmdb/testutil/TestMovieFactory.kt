@@ -15,7 +15,7 @@ object TestMovieFactory {
 		overview: String = "Test overview",
 		voteAverage: Double = 7.5,
 		posterPath: String = "/test_poster.jpg",
-		backdropPath: String = "/test_backdrop.jpg"
+		backdropPath: String = "/test_backdrop.jpg",
 	): Movie {
 		return Movie(
 			id = id,
@@ -41,7 +41,7 @@ object TestMovieFactory {
 		genreIds: List<Int> = listOf(28, 12),
 		adult: Boolean = false,
 		video: Boolean = false,
-		originalLanguage: String = "en"
+		originalLanguage: String = "en",
 	): RemoteMovie {
 		return RemoteMovie(
 			adult = adult,
@@ -80,4 +80,4 @@ object TestMovieFactory {
 			)
 		}
 	}
-} 
+}
