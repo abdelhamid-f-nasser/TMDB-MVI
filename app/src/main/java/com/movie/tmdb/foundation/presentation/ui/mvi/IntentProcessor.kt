@@ -10,10 +10,10 @@ package com.movie.tmdb.foundation.presentation.ui.mvi
  * Implement this interface to provide intent handling logic for your ViewModel or delegate.
  */
 interface IntentProcessor<Intent> {
-    /**
-     * Handles a single intent (user action or system event).
-     *
-     * @param intent The intent to handle.
-     */
+	/**
+	 * Handles a single intent (user action or system event).
+	 *
+	 * @param intent The intent to handle.
+	 */
 	fun handleIntent(intent: Intent)
 }

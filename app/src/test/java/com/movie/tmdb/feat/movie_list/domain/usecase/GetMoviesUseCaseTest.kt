@@ -30,13 +30,13 @@ class GetMoviesUseCaseTest {
 		// Arrange
 		val expectedMovies = listOf(
 			TestMovieFactory.createMovie(
-				id = "1", 
-				title = "Movie 1", 
+				id = "1",
+				title = "Movie 1",
 				overview = "Overview 1",
 				voteAverage = 7.5
 			),
 			TestMovieFactory.createMovie(
-				id = "2", 
+				id = "2",
 				title = "Movie 2",
 				overview = "Overview 2",
 				voteAverage = 8.0

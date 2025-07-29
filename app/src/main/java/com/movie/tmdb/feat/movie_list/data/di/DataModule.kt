@@ -15,7 +15,7 @@ import javax.inject.Singleton
 
 /**
  * Hilt module that provides data layer dependencies for the movie list feature.
- * 
+ *
  * Provides API services, data sources, and repository implementations.
  */
 @Module
@@ -28,7 +28,7 @@ abstract class DataModule {
 	@Binds
 	@Singleton
 	abstract fun bindMovieRepository(
-		defaultMovieRepository: DefaultMovieRepository
+		defaultMovieRepository: DefaultMovieRepository,
 	): MovieRepository
 
 	/**
@@ -37,7 +37,7 @@ abstract class DataModule {
 	@Binds
 	@Singleton
 	abstract fun bindMovieRemoteDataSource(
-		movieRetrofitRemoteDataSource: MovieRetrofitRemoteDataSource
+		movieRetrofitRemoteDataSource: MovieRetrofitRemoteDataSource,
 	): MovieRemoteDataSource
 
 	companion object {
@@ -50,4 +50,4 @@ abstract class DataModule {
 			return retrofit.create(TmdbService::class.java)
 		}
 	}
-} 
+}

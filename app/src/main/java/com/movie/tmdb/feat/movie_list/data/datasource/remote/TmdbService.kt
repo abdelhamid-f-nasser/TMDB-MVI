@@ -11,6 +11,6 @@ interface TmdbService {
 	@GET(ApiConstants.Endpoints.MOVIE_POPULAR)
 	suspend fun getPopularMovies(
 		@Query(ApiConstants.QueryParamsKeys.PAGE) page: Int,
-		@Query(ApiConstants.QueryParamsKeys.LANGUAGE) language: String = ApiConstants.QueryParamsKeys.DEFAULT_LANGUAGE
+		@Query(ApiConstants.QueryParamsKeys.LANGUAGE) language: String = ApiConstants.QueryParamsKeys.DEFAULT_LANGUAGE,
 	): PaginatedResponse<RemoteMovie>
 }

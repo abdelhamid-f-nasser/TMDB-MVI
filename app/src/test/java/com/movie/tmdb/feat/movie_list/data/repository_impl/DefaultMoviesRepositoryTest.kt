@@ -2,11 +2,8 @@ package com.movie.tmdb.feat.movie_list.data.repository_impl
 
 import androidx.paging.PagingData
 import com.google.common.truth.Truth.assertThat
-import com.movie.tmdb.core.constants.ApiConstants
-import com.movie.tmdb.core.constants.UiConstants
 import com.movie.tmdb.feat.movie_list.data.datasource.remote.paging.MoviePagingSource
 import com.movie.tmdb.feat.movie_list.domain.model.Movie
-import com.movie.tmdb.feat.movie_list.domain.repository.MovieRepository
 import io.mockk.mockk
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.test.runTest

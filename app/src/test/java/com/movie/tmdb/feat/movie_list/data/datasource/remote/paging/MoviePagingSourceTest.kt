@@ -82,7 +82,11 @@ class MoviePagingSourceTest {
 
 		// Act
 		val result = sut.load(
-			PagingSource.LoadParams.Refresh(key = pageNumber, loadSize = 20, placeholdersEnabled = false)
+			PagingSource.LoadParams.Refresh(
+				key = pageNumber,
+				loadSize = 20,
+				placeholdersEnabled = false
+			)
 		)
 
 		// Assert

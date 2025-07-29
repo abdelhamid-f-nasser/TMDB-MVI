@@ -22,7 +22,7 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class MovieListViewModel @Inject constructor(
-	private val getMoviesUseCase: GetMoviesUseCase
+	private val getMoviesUseCase: GetMoviesUseCase,
 ) : ViewModel() {
 
 	private val mviManager: MviManager<MovieListState, MovieListIntent, MovieListEffect> by lazy {

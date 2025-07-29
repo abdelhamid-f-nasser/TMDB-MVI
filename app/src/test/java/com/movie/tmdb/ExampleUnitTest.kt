@@ -27,9 +27,9 @@ class ExampleUnitTest {
 	lateinit var time: Instant
 
 	@Test
-    fun addition_isCorrect() {
+	fun addition_isCorrect() {
 		assertThat(true).isTrue()
-		assertThat(1+2).isEqualTo(3)
+		assertThat(1 + 2).isEqualTo(3)
 		assertThat(time).isNotNull()
-    }
+	}
 }

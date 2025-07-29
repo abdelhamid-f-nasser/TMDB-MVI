@@ -57,6 +57,7 @@ private fun getAppBarTitle(navBackStackEntry: NavBackStackEntry?): String {
 				URLDecoder.decode(movieName, "UTF-8")
 			} ?: stringResource(R.string.movie_details)
 		}
+
 		route == MovieRoute.MovieList.route -> stringResource(R.string.popular_movies)
 
 		else -> stringResource(R.string.app_name)

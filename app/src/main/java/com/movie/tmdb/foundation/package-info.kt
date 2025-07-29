@@ -47,5 +47,6 @@
 
 package com.movie.tmdb.foundation
 
-import com.movie.tmdb.foundation.domain.usecase.*
-import com.movie.tmdb.foundation.presentation.ui.*
+import com.movie.tmdb.foundation.domain.usecase.InputOnlyUseCase
+import com.movie.tmdb.foundation.domain.usecase.OutputOnlyUseCase
+import com.movie.tmdb.foundation.domain.usecase.UseCase

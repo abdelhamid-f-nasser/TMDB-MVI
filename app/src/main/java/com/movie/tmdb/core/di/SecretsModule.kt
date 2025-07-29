@@ -10,7 +10,7 @@ import javax.inject.Singleton
 
 /**
  * Hilt module that provides secrets-related dependencies.
- * 
+ *
  * Configures the secure JNI-based API key provider.
  */
 @Module
@@ -23,6 +23,6 @@ abstract class SecretsModule {
 	@Binds
 	@Singleton
 	abstract fun bindSecretsProvider(
-		nativeSecretsProvider: NativeSecretsProvider
+		nativeSecretsProvider: NativeSecretsProvider,
 	): SecretsProvider
-} 
+}

@@ -47,7 +47,10 @@ object NetworkModule {
 	fun provideApiKeyInterceptor(secretsProvider: SecretsProvider): Interceptor {
 		return Interceptor { chain ->
 			val url = chain.request().url.newBuilder()
-				.addQueryParameter(ApiConstants.QueryParamsKeys.API_KEY, secretsProvider.getTmdbApiKey())
+				.addQueryParameter(
+					ApiConstants.QueryParamsKeys.API_KEY,
+					secretsProvider.getTmdbApiKey()
+				)
 				.build()
 			val request = chain.request().newBuilder().url(url).build()
 			chain.proceed(request)
@@ -73,7 +76,7 @@ object NetworkModule {
 	@Singleton
 	fun provideRetrofit(
 		okHttpClient: OkHttpClient,
-		moshi: Moshi
+		moshi: Moshi,
 	): Retrofit {
 		return Retrofit.Builder()
 			.baseUrl(ApiConstants.TMDB_BASE_URL_V3)

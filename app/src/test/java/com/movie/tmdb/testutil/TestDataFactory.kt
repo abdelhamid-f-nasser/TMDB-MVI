@@ -15,7 +15,7 @@ object TestDataFactory {
 		results: List<RemoteMovie> = TestMovieFactory.createRemoteMovieList(),
 		page: Int = 1,
 		totalPages: Int = 5,
-		totalResults: Int = results.size
+		totalResults: Int = results.size,
 	): PaginatedResponse<RemoteMovie> {
 		return PaginatedResponse(
 			results = results,
@@ -26,14 +26,14 @@ object TestDataFactory {
 	}
 
 	fun createMoviePagingData(
-		movies: List<Movie> = TestMovieFactory.createMovieList()
+		movies: List<Movie> = TestMovieFactory.createMovieList(),
 	): PagingData<Movie> {
 		return PagingData.from(movies)
 	}
 
 	fun createEmptyPaginatedResponse(
 		page: Int = 1,
-		totalPages: Int = 0
+		totalPages: Int = 0,
 	): PaginatedResponse<RemoteMovie> {
 		return PaginatedResponse(
 			results = emptyList(),
@@ -42,4 +42,4 @@ object TestDataFactory {
 			totalResults = 0
 		)
 	}
-} 
+}
