@@ -1,7 +1,10 @@
 package com.movie.tmdb.feat.movie_list.presentation.ui.movie_list
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
@@ -9,6 +12,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.material3.pulltorefresh.rememberPullToRefreshState
@@ -34,6 +38,7 @@ import com.movie.tmdb.feat.movie_list.presentation.ui.movie_list.state.MovieList
 import com.movie.tmdb.feat.movie_list.presentation.ui.movie_list.viewmodel.MovieListViewModel
 import com.movie.tmdb.feat.movie_list.presentation.ui.movie_list.widget.FullScreenErrorView
 import com.movie.tmdb.feat.movie_list.presentation.ui.movie_list.widget.MovieListView
+import com.movie.tmdb.feat.movie_list.presentation.ui.movie_list.widget.search.SearchInputField
 
 fun NavGraphBuilder.movieListScreen(
 	onMovieClick: (Movie) -> Unit,
@@ -64,7 +69,19 @@ private fun MovieListScreen(
 	val listState = rememberLazyGridState()
 	val refreshState = rememberPullToRefreshState()
 
-	// Check if this is initial loading (no data yet) vs refresh loading (has data)
+	val onQueryChange = { query: String ->
+		viewModel.handleIntent(
+			MovieListIntent.SearchMovies(query
+			)
+		)
+	}
+
+	val onClearSearchClick = {
+		viewModel.handleIntent(
+			MovieListIntent.SearchMovies.clear
+		)
+	}
+
 	val isInitialLoading = movies?.loadState?.refresh is LoadState.Loading && movies.itemCount == 0
 	val isRefreshing = movies?.loadState?.refresh is LoadState.Loading
 
@@ -81,6 +98,8 @@ private fun MovieListScreen(
 		}
 	}
 
+	val searchQuery = uiState.searchQuery
+
 
 	LaunchedEffect(viewModel) {
 		viewModel.effect.collect { effect ->
@@ -93,12 +112,6 @@ private fun MovieListScreen(
 
 				}
 			}
-		}
-	}
-
-	LaunchedEffect(viewModel) {
-		if (uiState.moviesFlow == null) {
-			viewModel.handleIntent(MovieListIntent.LoadMovies)
 		}
 	}
 
@@ -118,55 +131,64 @@ private fun MovieListScreen(
 		}
 	}
 
-	PullToRefreshBox(
-		isRefreshing = isRefreshing,
-		onRefresh = { viewModel.handleIntent(MovieListIntent.RefreshMovies) },
-		state = refreshState,
-		modifier = Modifier.fillMaxSize(),
-		contentAlignment = Alignment.Center,
-	) {
-		when {
-			shouldShowFullScreenLoading -> {
-				CircularProgressIndicator()
-			}
-
-			shouldShowFullScreenError -> {
-				FullScreenErrorView(
-					onRetry = {
-						viewModel.handleIntent(MovieListIntent.RetryLoading)
-					}
-				)
-			}
-
-			shouldShowEmptyScreen -> {
-				Column(
-					horizontalAlignment = Alignment.CenterHorizontally
-				) {
-					Image(
-						painter = painterResource(id = R.drawable.search),
-						contentDescription = "No movies",
-						modifier = Modifier.size(120.dp)
-					)
-					Spacer(modifier = Modifier.height(16.dp))
-					Text("No movies found")
+	Column {
+		Row(
+			modifier = Modifier
+				.background(color = MaterialTheme.colorScheme.inverseOnSurface)
+				.height(IntrinsicSize.Min)
+		) {
+			SearchInputField(Modifier.weight(0.85f), searchQuery, onQueryChange, onClearSearchClick)
+		}
+		PullToRefreshBox(
+			isRefreshing = isRefreshing,
+			onRefresh = { viewModel.handleIntent(MovieListIntent.RefreshMovies) },
+			state = refreshState,
+			modifier = Modifier.fillMaxSize(),
+			contentAlignment = Alignment.Center,
+		) {
+			when {
+				shouldShowFullScreenLoading -> {
+					CircularProgressIndicator()
 				}
-			}
 
-			movies != null -> {
-				MovieListView(
-					movies = movies,
-					state = listState,
-					onError = { errorMessage ->
-						viewModel.handleIntent(MovieListIntent.RetryLoading)
-					},
-					onRetry = {
-						viewModel.handleIntent(MovieListIntent.RetryLoading)
-					},
-					onIntent = { intent ->
-						viewModel.handleIntent(intent)
-					},
-					onMovieClick = onMovieClick
-				)
+				shouldShowFullScreenError -> {
+					FullScreenErrorView(
+						onRetry = {
+							viewModel.handleIntent(MovieListIntent.RetryLoading)
+						}
+					)
+				}
+
+				shouldShowEmptyScreen -> {
+					Column(
+						horizontalAlignment = Alignment.CenterHorizontally
+					) {
+						Image(
+							painter = painterResource(id = R.drawable.search),
+							contentDescription = "No movies",
+							modifier = Modifier.size(120.dp)
+						)
+						Spacer(modifier = Modifier.height(16.dp))
+						Text("No movies found")
+					}
+				}
+
+				movies != null -> {
+					MovieListView(
+						movies = movies,
+						state = listState,
+						onError = { errorMessage ->
+							viewModel.handleIntent(MovieListIntent.RetryLoading)
+						},
+						onRetry = {
+							viewModel.handleIntent(MovieListIntent.RetryLoading)
+						},
+						onIntent = { intent ->
+							viewModel.handleIntent(intent)
+						},
+						onMovieClick = onMovieClick
+					)
+				}
 			}
 		}
 	}

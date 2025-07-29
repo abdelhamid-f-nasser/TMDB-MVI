@@ -2,6 +2,8 @@ package com.movie.tmdb.testutil
 
 import com.movie.tmdb.feat.movie_list.data.datasource.remote.model.RemoteMovie
 import com.movie.tmdb.feat.movie_list.domain.model.Movie
+import kotlin.time.Clock
+import kotlin.time.ExperimentalTime
 
 /**
  * Factory for creating test Movie and RemoteMovie instances.
@@ -61,10 +63,11 @@ object TestMovieFactory {
 		)
 	}
 
+	@OptIn(ExperimentalTime::class)
 	fun createMovieList(count: Int = 3, startId: Int = 1): List<Movie> {
 		return (startId until startId + count).map { id ->
 			createMovie(
-				id = id.toString(),
+				id = "${id}_${Clock.System.now()}",
 				title = "Test Movie $id",
 				overview = "Test overview for movie $id"
 			)
