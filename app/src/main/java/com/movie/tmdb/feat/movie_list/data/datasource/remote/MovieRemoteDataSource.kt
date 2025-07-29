@@ -1,9 +1,7 @@
 package com.movie.tmdb.feat.movie_list.data.datasource.remote
 
-import com.movie.tmdb.feat.movie_list.data.datasource.remote.model.RemoteMovie
 import com.movie.tmdb.core.network.model.PaginatedResponse
-import com.movie.tmdb.feat.movie_list.data.datasource.remote.model.RemoteMovieResponse
-import kotlinx.coroutines.flow.Flow
+import com.movie.tmdb.feat.movie_list.data.datasource.remote.model.RemoteMovie
 
 interface MovieRemoteDataSource {
     /**
@@ -12,4 +10,5 @@ interface MovieRemoteDataSource {
      * @return [PaginatedResponse] containing [RemoteMovie] items.
      */
 	suspend fun getPopularMovies(page: Int): PaginatedResponse<RemoteMovie>
+	suspend fun searchMovies(query: String, page: Int): PaginatedResponse<RemoteMovie>
 }

@@ -10,9 +10,12 @@ class MovieRetrofitRemoteDataSource @Inject constructor(
 
 	override suspend fun getPopularMovies(
 		page: Int,
-	): PaginatedResponse<RemoteMovie> {
-		return tmdbService.getPopularMovies(
+	): PaginatedResponse<RemoteMovie> = tmdbService.getPopularMovies(
 			page = page,
 		)
-	}
+
+	override suspend fun searchMovies(
+		query: String,
+		page: Int,
+	): PaginatedResponse<RemoteMovie> = tmdbService.searchMovies(query, page)
 }

@@ -1,12 +1,15 @@
 package com.movie.tmdb.feat.movie_list.data.datasource.remote.paging
 
+import android.util.Log
 import androidx.paging.PagingSource
 import com.movie.tmdb.feat.movie_list.data.datasource.remote.MovieRemoteDataSource
 import com.movie.tmdb.feat.movie_list.domain.model.Movie
 import com.movie.tmdb.testutil.TestDataFactory
 import com.movie.tmdb.testutil.TestMovieFactory
 import io.mockk.coEvery
+import io.mockk.every
 import io.mockk.mockk
+import io.mockk.mockkStatic
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
@@ -20,6 +23,8 @@ class MoviePagingSourceTest {
 
 	@BeforeEach
 	fun setUp() {
+		mockkStatic(Log::class)
+		every { Log.e(any(), any()) } returns 0
 		mockRemoteDataSource = mockk<MovieRemoteDataSource>()
 		sut = MoviePagingSource(mockRemoteDataSource)
 	}

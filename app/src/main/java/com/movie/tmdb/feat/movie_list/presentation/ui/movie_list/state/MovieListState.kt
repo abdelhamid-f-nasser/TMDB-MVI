@@ -6,4 +6,7 @@ import kotlinx.coroutines.flow.Flow
 
 data class MovieListState(
 	val moviesFlow: Flow<PagingData<Movie>>? = null,
+	val searchQuery: String? = null,
+	val isSearching: Boolean = false,
+	val searchError: String? = null,
 )

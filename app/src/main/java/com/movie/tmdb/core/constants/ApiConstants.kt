@@ -9,11 +9,13 @@ object ApiConstants {
 
     object Endpoints {
         const val MOVIE_POPULAR = "movie/popular"
+        const val SEARCH_MOVIE = "search/movie"
     }
 
     object QueryParamsKeys {
 		const val API_KEY = "api_key"
 		const val PAGE = "page"
+		const val SEARCH_QUERY = "query"
 		const val LANGUAGE = "language"
 		const val DEFAULT_LANGUAGE = "en-US"
     }
