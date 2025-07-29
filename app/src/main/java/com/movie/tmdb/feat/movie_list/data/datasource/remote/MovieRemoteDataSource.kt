@@ -10,4 +10,5 @@ interface MovieRemoteDataSource {
 	 * @return [PaginatedResponse] containing [RemoteMovie] items.
 	 */
 	suspend fun getPopularMovies(page: Int): PaginatedResponse<RemoteMovie>
+	suspend fun searchMovies(query: String, page: Int): PaginatedResponse<RemoteMovie>
 }

@@ -2,6 +2,7 @@ package com.movie.tmdb.feat.movie_list.data.repository_impl
 
 import androidx.paging.PagingData
 import com.google.common.truth.Truth.assertThat
+import com.movie.tmdb.feat.movie_list.data.datasource.remote.MovieRetrofitRemoteDataSource
 import com.movie.tmdb.feat.movie_list.data.datasource.remote.paging.MoviePagingSource
 import com.movie.tmdb.feat.movie_list.domain.model.Movie
 import io.mockk.mockk
@@ -15,11 +16,14 @@ class DefaultMoviesRepositoryTest {
 
 	private lateinit var sut: DefaultMovieRepository
 	private lateinit var mockMoviePagingSource: MoviePagingSource
+	private lateinit var mockRemoteDataSource: MovieRetrofitRemoteDataSource
 
 	@BeforeEach
 	fun setUp() {
 		mockMoviePagingSource = mockk<MoviePagingSource>()
-		sut = DefaultMovieRepository(mockMoviePagingSource)
+		mockRemoteDataSource = mockk<MovieRetrofitRemoteDataSource>()
+
+		sut = DefaultMovieRepository(mockMoviePagingSource, mockRemoteDataSource)
 	}
 
 	@Test
@@ -27,6 +31,19 @@ class DefaultMoviesRepositoryTest {
 	fun `getPopularMovies returns Flow of PagingData`() = runTest {
 		// Act
 		val result = sut.getPopularMovies()
+
+		// Assert
+		assertThat(result is Flow<PagingData<Movie>>)
+	}
+
+	@Test
+	@DisplayName("Should return Flow of PagingData when searchMovies is called")
+	fun `searchMovies returns Flow of PagingData`() = runTest {
+		// Arrange
+		val query = "key"
+
+		// Act
+		val result = sut.searchMovies(query)
 
 		// Assert
 		assertThat(result is Flow<PagingData<Movie>>)
