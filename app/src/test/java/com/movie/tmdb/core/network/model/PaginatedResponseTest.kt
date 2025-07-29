@@ -1,9 +1,9 @@
 package com.movie.tmdb.core.network.model
 
+import com.google.common.truth.Truth.assertThat
+import com.movie.tmdb.core.testutil.moshiGenericAdapter
 import com.movie.tmdb.feat.movie_list.data.datasource.remote.model.RemoteMovie
 import com.movie.tmdb.feat.movie_list.data.datasource.remote.model.RemoteMovieResponse
-import com.movie.tmdb.core.testutil.moshiGenericAdapter
-import com.google.common.truth.Truth.assertThat
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test

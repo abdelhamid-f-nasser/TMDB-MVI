@@ -8,15 +8,15 @@ import com.squareup.moshi.Json
  * Used for The movie database responses.
  */
 data class PaginatedResponse<T>(
-    @param:Json(name = "page")
+	@param:Json(name = "page")
 	val page: Int,
 
 	@param:Json(name = "results")
 	val results: List<T>,
 
-    @param:Json(name = "total_pages")
+	@param:Json(name = "total_pages")
 	val totalPages: Int,
 
-    @param:Json(name = "total_results")
-	val totalResults: Int
+	@param:Json(name = "total_results")
+	val totalResults: Int,
 )

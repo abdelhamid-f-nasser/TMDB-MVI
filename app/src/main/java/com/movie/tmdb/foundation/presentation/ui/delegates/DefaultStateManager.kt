@@ -13,17 +13,17 @@ import kotlinx.coroutines.flow.StateFlow
  * @property initialState The initial state value.
  */
 class DefaultStateManager<State>(
-    initialState: State
+	initialState: State,
 ) : StateManager<State> {
-    private val _uiState = MutableStateFlow(initialState)
+	private val _uiState = MutableStateFlow(initialState)
 
-    override val uiState: StateFlow<State> = _uiState
+	override val uiState: StateFlow<State> = _uiState
 
-    override fun updateState(reducer: State.() -> State) {
-        _uiState.value = _uiState.value.reducer()
-    }
+	override fun updateState(reducer: State.() -> State) {
+		_uiState.value = _uiState.value.reducer()
+	}
 
-    override fun getCurrentState(): State {
-        return _uiState.value
-    }
+	override fun getCurrentState(): State {
+		return _uiState.value
+	}
 }

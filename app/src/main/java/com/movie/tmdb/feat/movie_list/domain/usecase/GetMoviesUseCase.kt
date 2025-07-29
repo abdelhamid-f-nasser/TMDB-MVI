@@ -11,7 +11,7 @@ import javax.inject.Inject
  * Use case for fetching a paginated list of movies.
  */
 class GetMoviesUseCase @Inject constructor(
-	private val repository: MovieRepository
+	private val repository: MovieRepository,
 ) : OutputOnlyUseCase<Flow<PagingData<Movie>>> {
 
 	override fun invoke(): Flow<PagingData<Movie>> = repository.getPopularMovies()

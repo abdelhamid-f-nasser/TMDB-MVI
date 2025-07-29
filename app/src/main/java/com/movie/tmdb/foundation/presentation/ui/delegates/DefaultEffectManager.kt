@@ -13,16 +13,16 @@ import kotlinx.coroutines.flow.StateFlow
  * @property initialEffect The initial effect value (optional).
  */
 class DefaultEffectManager<Effect>(
-    initialEffect: Effect? = null
+	initialEffect: Effect? = null,
 ) : EffectManager<Effect> {
-    private val _effect = MutableStateFlow(initialEffect)
-    override val effect: StateFlow<Effect?> = _effect
+	private val _effect = MutableStateFlow(initialEffect)
+	override val effect: StateFlow<Effect?> = _effect
 
-    override fun emitEffect(effect: Effect) {
-        _effect.value = effect
-    }
+	override fun emitEffect(effect: Effect) {
+		_effect.value = effect
+	}
 
-    override fun consumeEffect() {
-        _effect.value = null
-    }
+	override fun consumeEffect() {
+		_effect.value = null
+	}
 }

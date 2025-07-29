@@ -18,7 +18,7 @@ import com.movie.tmdb.R
 
 @Composable
 fun FullScreenErrorView(
-	onRetry: () -> Unit
+	onRetry: () -> Unit,
 ) {
 	Column(
 		horizontalAlignment = Alignment.CenterHorizontally

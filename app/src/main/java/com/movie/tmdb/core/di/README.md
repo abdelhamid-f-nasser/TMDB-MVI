@@ -1,31 +1,36 @@
 # Dependency Injection Setup
 
-This directory contains the Hilt dependency injection modules for the TMDB app, organized by architectural layers.
+This directory contains the Hilt dependency injection modules for the TMDB app, organized by
+architectural layers.
 
 ## Module Structure
 
 ### Core Modules
+
 - **`NetworkModule`**: Provides core networking dependencies
-  - Retrofit instance configured for TMDB API
-  - OkHttpClient with logging and API key interceptors
-  - Moshi for JSON serialization
-  - HTTP timeout and logging configuration
+	- Retrofit instance configured for TMDB API
+	- OkHttpClient with logging and API key interceptors
+	- Moshi for JSON serialization
+	- HTTP timeout and logging configuration
 
 ### Feature Modules
+
 - **`MovieListModule`**: Main entry point for movie list feature
-  - Includes data and domain modules
-  - Coordinates all movie list dependencies
+	- Includes data and domain modules
+	- Coordinates all movie list dependencies
 
 ### Data Layer
+
 - **`DataModule`**: Provides data layer implementations
-  - Binds `DefaultMovieRepository` to `MovieRepository`
-  - Binds `MovieRetrofitRemoteDataSource` to `MovieRemoteDataSource`
-  - Provides `TmdbService` from Retrofit
+	- Binds `DefaultMovieRepository` to `MovieRepository`
+	- Binds `MovieRetrofitRemoteDataSource` to `MovieRemoteDataSource`
+	- Provides `TmdbService` from Retrofit
 
 ### Domain Layer
+
 - **`DomainModule`**: Placeholder for domain dependencies
-  - Currently empty as use cases use `@Inject` constructors
-  - Ready for future domain-specific bindings
+	- Currently empty as use cases use `@Inject` constructors
+	- Ready for future domain-specific bindings
 
 ## Dependency Graph
 

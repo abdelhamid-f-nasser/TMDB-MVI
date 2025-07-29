@@ -7,7 +7,9 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 class DefaultEffectManagerTest {
-    sealed class TestEffect { object ShowToast : TestEffect() }
+	sealed class TestEffect {
+		object ShowToast : TestEffect()
+	}
 
 
 	lateinit var sut: DefaultEffectManager<TestEffect>
@@ -18,13 +20,13 @@ class DefaultEffectManagerTest {
 
 	}
 
-    @Test
-    fun `initial effect is null by default`() = runTest {
-        sut.effect.test {
-            assertThat(awaitItem()).isNull()
-            cancelAndIgnoreRemainingEvents()
-        }
-    }
+	@Test
+	fun `initial effect is null by default`() = runTest {
+		sut.effect.test {
+			assertThat(awaitItem()).isNull()
+			cancelAndIgnoreRemainingEvents()
+		}
+	}
 
 	@Test
 	fun `emitEffect sets the effect`() = runTest {
@@ -36,15 +38,15 @@ class DefaultEffectManagerTest {
 		}
 	}
 
-    @Test
-    fun `consumeEffect clears the effect`() = runTest {
-        sut.effect.test {
-            assertThat(awaitItem()).isNull()
+	@Test
+	fun `consumeEffect clears the effect`() = runTest {
+		sut.effect.test {
+			assertThat(awaitItem()).isNull()
 			sut.emitEffect(TestEffect.ShowToast)
 			sut.consumeEffect()
-            assertThat(awaitItem()).isEqualTo(TestEffect.ShowToast)
-            assertThat(awaitItem()).isNull()
-            cancelAndIgnoreRemainingEvents()
-        }
-    }
+			assertThat(awaitItem()).isEqualTo(TestEffect.ShowToast)
+			assertThat(awaitItem()).isNull()
+			cancelAndIgnoreRemainingEvents()
+		}
+	}
 }
