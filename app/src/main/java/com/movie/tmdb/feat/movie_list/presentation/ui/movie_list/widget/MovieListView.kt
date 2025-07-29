@@ -53,7 +53,6 @@ fun MovieListView(
 			}
 		}
 
-		// Handle append loading state only (initial loading is handled by parent)
 		when (movies.loadState.append) {
 			is LoadState.Loading -> {
 				item {
