@@ -20,7 +20,6 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.debounce
-import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.flatMapLatest
 import javax.inject.Inject
 
@@ -50,10 +49,9 @@ class MovieListViewModel @Inject constructor(
 	private val moviesPagingFlow: Flow<PagingData<Movie>> = combine(
 		searchQuery,
 		refreshTrigger
-	) { query, _ -> query }
+	) { query, refreshCount -> Pair(query, refreshCount) }
 		.debounce(UiConstants.Search.DEBOUNCE_SEARCH_INPUT)
-		.distinctUntilChanged()
-		.flatMapLatest { query ->
+		.flatMapLatest { (query, _) ->
 			if (query.isBlank()) {
 				getMoviesUseCase()
 			} else {

@@ -34,7 +34,6 @@ fun MovieItem(
 		Box(
 			modifier = Modifier.fillMaxSize()
 		) {
-			// Background poster image
 			TmdbAsyncImage(
 				model = ImageUrlBuilder.buildPosterUrl(movie.posterPath),
 				contentDescription = "Poster for ${movie.title}",

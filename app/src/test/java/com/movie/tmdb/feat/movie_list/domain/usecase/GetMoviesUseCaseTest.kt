@@ -83,7 +83,7 @@ class GetMoviesUseCaseTest {
 		// Act
 		val result = sut()
 
-		// Assert - Verify the flow emits the expected PagingData
+		// Assert
 		result.test {
 			val emittedPagingData = awaitItem()
 			assertThat(emittedPagingData).isNotNull()

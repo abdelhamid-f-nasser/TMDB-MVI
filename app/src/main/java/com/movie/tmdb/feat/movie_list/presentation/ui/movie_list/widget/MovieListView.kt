@@ -18,7 +18,6 @@ import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import com.movie.tmdb.R
 import com.movie.tmdb.feat.movie_list.domain.model.Movie
-import com.movie.tmdb.feat.movie_list.presentation.ui.movie_list.intent.MovieListIntent
 
 /**
  * Movie list composable with pagination support.
@@ -30,7 +29,6 @@ fun MovieListView(
 	state: LazyGridState,
 	onError: (String) -> Unit,
 	onRetry: () -> Unit,
-	onIntent: (MovieListIntent) -> Unit,
 	onMovieClick: (Movie) -> Unit,
 ) {
 	val gridItemSpan = 2;
@@ -53,7 +51,6 @@ fun MovieListView(
 			}
 		}
 
-		// Handle append loading state only (initial loading is handled by parent)
 		when (movies.loadState.append) {
 			is LoadState.Loading -> {
 				item {
