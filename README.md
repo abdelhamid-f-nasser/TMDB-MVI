@@ -1,3 +1,4 @@
+[![wakatime](https://wakatime.com/badge/user/1e011e69-8eac-4248-8e86-7f1ff1997fac/project/59c359dc-9099-4cb4-bee7-059d70e4aa37.svg)](https://wakatime.com/badge/user/1e011e69-8eac-4248-8e86-7f1ff1997fac/project/59c359dc-9099-4cb4-bee7-059d70e4aa37)
 # 🎬 TMDB - The Movie Database Android App
 
 A modern Android application that allows users to discover and explore movies using The Movie Database (TMDB) API. Built with Clean Architecture, MVI pattern, and Jetpack Compose.
