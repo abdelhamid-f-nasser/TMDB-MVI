@@ -183,9 +183,6 @@ private fun MovieListScreen(
 						onRetry = {
 							viewModel.handleIntent(MovieListIntent.RetryLoading)
 						},
-						onIntent = { intent ->
-							viewModel.handleIntent(intent)
-						},
 						onMovieClick = onMovieClick
 					)
 				}

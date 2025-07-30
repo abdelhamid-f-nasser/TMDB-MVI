@@ -12,6 +12,4 @@ import dagger.hilt.components.SingletonComponent
 @Module
 @InstallIn(SingletonComponent::class)
 object DomainModule {
-	// No bindings needed currently - GetMoviesUseCase uses @Inject constructor
-	// Add future use case bindings here if needed
 }

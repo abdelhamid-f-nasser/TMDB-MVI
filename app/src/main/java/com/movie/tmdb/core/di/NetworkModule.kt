@@ -1,6 +1,7 @@
 package com.movie.tmdb.core.di
 
 import com.movie.tmdb.core.constants.ApiConstants
+import com.movie.tmdb.core.network.NetworkConnectionInterceptor
 import com.movie.tmdb.core.secrets.SecretsProvider
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -57,15 +58,19 @@ object NetworkModule {
 		}
 	}
 
+
+
 	@Provides
 	@Singleton
 	fun provideOkHttpClient(
 		apiKeyInterceptor: Interceptor,
 		loggingInterceptor: HttpLoggingInterceptor,
+		networkConnectionInterceptor: NetworkConnectionInterceptor,
 	): OkHttpClient {
 		return OkHttpClient.Builder()
 			.addInterceptor(apiKeyInterceptor)
 			.addInterceptor(loggingInterceptor)
+			.addInterceptor(networkConnectionInterceptor)
 			.connectTimeout(30, TimeUnit.SECONDS)
 			.readTimeout(30, TimeUnit.SECONDS)
 			.writeTimeout(30, TimeUnit.SECONDS)

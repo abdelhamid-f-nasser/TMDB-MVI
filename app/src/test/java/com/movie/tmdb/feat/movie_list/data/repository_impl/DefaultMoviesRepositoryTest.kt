@@ -2,6 +2,7 @@ package com.movie.tmdb.feat.movie_list.data.repository_impl
 
 import androidx.paging.PagingData
 import com.google.common.truth.Truth.assertThat
+import com.movie.tmdb.feat.movie_list.data.datasource.local.MovieRoomLocalDataSource
 import com.movie.tmdb.feat.movie_list.data.datasource.remote.MovieRetrofitRemoteDataSource
 import com.movie.tmdb.feat.movie_list.data.datasource.remote.paging.MoviePagingSource
 import com.movie.tmdb.feat.movie_list.domain.model.Movie
@@ -17,13 +18,15 @@ class DefaultMoviesRepositoryTest {
 	private lateinit var sut: DefaultMovieRepository
 	private lateinit var mockMoviePagingSource: MoviePagingSource
 	private lateinit var mockRemoteDataSource: MovieRetrofitRemoteDataSource
+	private lateinit var mockLocalDataSource: MovieRoomLocalDataSource
 
 	@BeforeEach
 	fun setUp() {
 		mockMoviePagingSource = mockk<MoviePagingSource>()
 		mockRemoteDataSource = mockk<MovieRetrofitRemoteDataSource>()
+		mockLocalDataSource = mockk<MovieRoomLocalDataSource>()
 
-		sut = DefaultMovieRepository(mockMoviePagingSource, mockRemoteDataSource)
+		sut = DefaultMovieRepository(mockLocalDataSource, mockRemoteDataSource)
 	}
 
 	@Test
