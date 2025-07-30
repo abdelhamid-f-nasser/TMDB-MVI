@@ -1,8 +1,14 @@
 package com.movie.tmdb.core.di
 
+import android.content.Context
+import com.movie.tmdb.core.database.TmdbDatabase
+import com.movie.tmdb.feat.movie_list.data.datasource.local.MoviesDao
 import dagger.Module
+import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
 /**
  * Main Hilt module for the application.
@@ -18,5 +24,16 @@ import dagger.hilt.components.SingletonComponent
 )
 @InstallIn(SingletonComponent::class)
 object AppModule {
-	// All dependencies are provided by included modules
+
+	@Singleton
+	@Provides
+	fun provideAppDatabase(@ApplicationContext context: Context): TmdbDatabase {
+		return TmdbDatabase.buildDatabase(context)
+	}
+
+	@Singleton
+	@Provides
+	fun provideMoviesDao(tmdbDatabase: TmdbDatabase): MoviesDao {
+		return tmdbDatabase.moviesDao()
+	}
 }

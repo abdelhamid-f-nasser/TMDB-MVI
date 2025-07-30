@@ -1,5 +1,7 @@
 package com.movie.tmdb.feat.movie_list.data.di
 
+import com.movie.tmdb.feat.movie_list.data.datasource.local.MovieLocalDataSource
+import com.movie.tmdb.feat.movie_list.data.datasource.local.MovieRoomLocalDataSource
 import com.movie.tmdb.feat.movie_list.data.datasource.remote.MovieRemoteDataSource
 import com.movie.tmdb.feat.movie_list.data.datasource.remote.MovieRetrofitRemoteDataSource
 import com.movie.tmdb.feat.movie_list.data.datasource.remote.TmdbService
@@ -39,6 +41,15 @@ abstract class DataModule {
 	abstract fun bindMovieRemoteDataSource(
 		movieRetrofitRemoteDataSource: MovieRetrofitRemoteDataSource,
 	): MovieRemoteDataSource
+
+	/**
+	 * Binds the Room implementation to the local data source interface.
+	 */
+	@Binds
+	@Singleton
+	abstract fun bindMovieLocalDataSource(
+		movieRoomLocalDataSource: MovieRoomLocalDataSource
+	): MovieLocalDataSource
 
 	companion object {
 		/**
